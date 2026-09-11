@@ -94,7 +94,7 @@ def editar(id):
 
 
 
-@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:id>', methods=['POST'])
 def delete(id):
 
     cursor = con.cursor()

@@ -1,0 +1,703 @@
+/* =====================================================
+   SISTEMA DE LIVROS
+   CSS PROFISSIONAL
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   VARIÁVEIS
+===================================================== */
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --primary-light: #eef2ff;
+
+    --danger: #ef4444;
+    --danger-dark: #b91c1c;
+    --danger-light: #fef2f2;
+
+    --success: #10b981;
+    --success-dark: #047857;
+    --success-light: #ecfdf5;
+
+    --background: #f5f7fb;
+    --card: #ffffff;
+
+    --text: #1f2937;
+    --text-light: #6b7280;
+
+    --border: #e5e7eb;
+
+    --shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+
+    --shadow-hover:
+        0 15px 35px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #eef2ff 0%,
+            transparent 35%
+        ),
+        var(--background);
+
+    color: var(--text);
+
+    padding: 40px 20px;
+}
+
+
+/* =====================================================
+   TÍTULOS
+===================================================== */
+
+h1,
+h2,
+h3 {
+    color: #111827;
+}
+
+h2 {
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   CARD PRINCIPAL
+===================================================== */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 20px auto;
+
+    background: var(--card);
+
+    padding: 35px;
+
+    border: 1px solid rgba(229, 231, 235, 0.8);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.3s;
+}
+
+main:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* =====================================================
+   TABELA
+===================================================== */
+
+table {
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+
+/* Cabeçalho */
+
+thead {
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4f46e5
+        );
+
+    color: white;
+}
+
+th {
+    padding: 16px 18px;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* Cantos do cabeçalho */
+
+th:first-child {
+    border-top-left-radius: 11px;
+}
+
+th:last-child {
+    border-top-right-radius: 11px;
+}
+
+
+/* Células */
+
+td {
+    padding: 16px 18px;
+
+    font-size: 14px;
+
+    color: #374151;
+
+    border-bottom: 1px solid var(--border);
+
+    transition: 0.2s;
+}
+
+
+/* Linhas */
+
+tbody tr {
+    transition: 0.2s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tbody tr:hover {
+    background-color: var(--primary-light);
+
+    transform: translateY(-1px);
+}
+
+
+/* Última linha */
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =====================================================
+   FORMULÁRIOS
+===================================================== */
+
+form {
+    width: 100%;
+    max-width: 430px;
+
+    margin: 30px auto;
+
+    padding: 35px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(229, 231, 235, 0.8);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    transition: 0.3s;
+}
+
+form:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* =====================================================
+   LABELS
+===================================================== */
+
+label {
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #374151;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    margin-bottom: 8px;
+
+    background-color: #f9fafb;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background-color 0.2s;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:hover {
+    border-color: #c7d2fe;
+}
+
+input:focus {
+    outline: none;
+
+    background-color: white;
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+
+/* =====================================================
+   BOTÃO PRINCIPAL
+===================================================== */
+
+button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4f46e5
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(79, 70, 229, 0.25);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #3730a3
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(79, 70, 229, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   LINKS COMO BOTÕES
+===================================================== */
+
+.botao {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 9px 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4f46e5
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+
+    box-shadow:
+        0 3px 8px rgba(79, 70, 229, 0.2);
+}
+
+.botao:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #3730a3
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 12px rgba(79, 70, 229, 0.25);
+}
+
+
+/* =====================================================
+   BOTÃO EXCLUIR
+===================================================== */
+
+.delete {
+    background:
+        linear-gradient(
+            135deg,
+            #f87171,
+            #ef4444
+        ) !important;
+
+    box-shadow:
+        0 3px 8px rgba(239, 68, 68, 0.2);
+}
+
+.delete:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        ) !important;
+
+    box-shadow:
+        0 6px 12px rgba(239, 68, 68, 0.3);
+}
+
+
+/* =====================================================
+   AÇÕES DA TABELA
+===================================================== */
+
+td .botao {
+    margin-right: 5px;
+
+    margin-bottom: 5px;
+}
+
+
+/* =====================================================
+   PÁGINA DE CONFIRMAÇÃO
+===================================================== */
+
+.confirmacao {
+    width: 100%;
+
+    max-width: 450px;
+
+    margin: 30px auto;
+
+    padding: 35px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    text-align: center;
+}
+
+.confirmacao p {
+    margin-bottom: 15px;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+.confirmacao p:first-child {
+    color: var(--text);
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+/* Formulário dentro da confirmação */
+
+.confirmacao form {
+    width: 100%;
+
+    margin: 25px 0 0;
+
+    padding: 0;
+
+    border: none;
+
+    box-shadow: none;
+
+    background: transparent;
+}
+
+.confirmacao form:hover {
+    box-shadow: none;
+}
+
+.confirmacao .botao {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   FLASH MESSAGES
+===================================================== */
+
+.flash-messages {
+    width: 100%;
+
+    max-width: 430px;
+
+    margin: 0 auto 20px;
+}
+
+.flash {
+    padding: 14px 18px;
+
+    border-radius: 9px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 4px 10px rgba(15, 23, 42, 0.05);
+}
+
+
+/* Sucesso */
+
+.flash.success {
+    background-color: var(--success-light);
+
+    color: var(--success-dark);
+
+    border: 1px solid #a7f3d0;
+}
+
+
+/* Erro */
+
+.flash.error {
+    background-color: var(--danger-light);
+
+    color: var(--danger-dark);
+
+    border: 1px solid #fecaca;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    main {
+        padding: 20px;
+
+        margin: 10px auto;
+    }
+
+    form {
+        padding: 25px;
+
+        margin: 20px auto;
+    }
+
+    .confirmacao {
+        padding: 25px;
+    }
+
+    /* Permite rolar a tabela no celular */
+
+    main {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+    }
+}
+
+
+/* =====================================================
+   ANIMAÇÃO SUAVE
+===================================================== */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main,
+form,
+.confirmacao,
+.flash-messages {
+    animation: aparecer 0.4s ease;
+}
+
+/* Links como botões */
+
+a {
+    display: inline-block;
+    padding: 10px 18px;
+
+    background-color: #4f46e5;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+a:hover {
+    background-color: #3730a3;
+    transform: translateY(-2px);
+}
+
+
+/* Botão excluir */
+
+a.delete {
+    background-color: #ef4444;
+}
+
+a.delete:hover {
+    background-color: #b91c1c;
+}

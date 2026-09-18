@@ -32,6 +32,7 @@ def novo():
 
 @app.route('/criar', methods = ['POST'])
 def criar():
+
     titulo = request.form['titulo']
     autor = request.form['autor']
     data_publicacao = request.form['data_publicacao']
@@ -40,6 +41,7 @@ def criar():
 
     try:
         cursor.execute("""SELECT 1 FROM livro WHERE titulo = ?""", (titulo,))
+
         if cursor.fetchone():
             flash("Erro: livro já existe no banco")
             return redirect(url_for('novo'))
@@ -120,5 +122,117 @@ def delete(id):
 
 
 
+# USUÁRIO
+
+@app.route('/usuario')
+def usuario():
+    cursor = con.cursor()
+
+    cursor.execute("""SELECT u.ID_USUARIO, u.NOME, u.EMAIL, u.SENHA 
+                        FROM USUARIO u 
+                        ORDER BY nome""")
+
+    usuarios = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template('usuario.html', usuarios=usuarios)
+
+
+@app.route('/novo_usuario', methods = ['GET', 'POST'])
+def novo_usuario():
+
+    if request.method == 'GET':
+        return render_template("novo_usuario.html")
+
+    nome = request.form['nome']
+    email = request.form['email']
+    senha = request.form['senha']
+
+    cursor = con.cursor()
+
+    try:
+        cursor.execute("""SELECT 1 FROM usuario WHERE nome = ?""", (nome,))
+
+        if cursor.fetchone():
+            flash("Erro: usuário já existente no banco")
+            return redirect(url_for('usuario'))
+
+        cursor.execute(""" 
+                            INSERT INTO usuario (nome, email, senha)
+                            values(?,?,?) 
+                        """, (nome, email, senha))
+
+        con.commit() #salva no banco
+        flash("Usuário criado com sucesso")
+        return redirect(url_for('usuario'))
+
+    except Exception as e:
+        flash(f"Ocorreu um erro -> {e}")
+        con.rollback()
+        return redirect(url_for('usuario'))
+    finally:
+        cursor.close()
+
+@app.route('/editar_usuario/<int:id>', methods = ['GET', 'POST'])
+def editar_usuario(id):
+    cursor = con.cursor()
+
+    try:
+        cursor.execute("""SELECT id_usuario, nome, email, senha
+                            FROM usuario WHERE id_usuario = ?""", (id,))
+        usuario = cursor.fetchone()
+
+        if not usuario:
+            flash("Usuário não encontrado")
+            return redirect(url_for('usuario'))
+
+        if request.method == 'POST':
+            nome = request.form['nome']
+            email = request.form['email']
+            senha = request.form['senha']
+
+            cursor.execute(""" UPDATE usuario SET nome = ?, email = ?, senha = ? where id_usuario = ?""",
+                           (nome, email, senha, id))
+            con.commit()
+            flash("Usuário editado com sucesso")
+            return redirect(url_for('usuario'))
+
+        return render_template("editar_usuario.html", usuario=usuario)
+
+    except Exception as e:
+        flash(f"Ocorreu um erro -> {e}")
+        con.rollback()
+        return redirect(url_for('usuario'))
+    finally:
+        cursor.close()
+
+
+@app.route('/delete_usuario/<int:id>', methods=['POST'])
+def delete_usuario(id):
+
+    cursor = con.cursor()
+
+    try:
+        cursor.execute(
+            "DELETE FROM usuario WHERE id_usuario = ?",
+            (id,)
+        )
+
+        con.commit()
+
+        flash("Usuário excluído com sucesso")
+        return redirect(url_for('usuario'))
+
+    except Exception as e:
+        flash(f"Ocorreu um erro -> {e}")
+        con.rollback()
+        return redirect(url_for('usuario'))
+
+    finally:
+        cursor.close()
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+

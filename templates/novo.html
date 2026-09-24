@@ -20,7 +20,11 @@
     {% endwith %}
 
 
-    <form action="/criar" method="post">
+    <form action="/criar" method="post" class="form-livro" enctype="multipart/form-data">
+
+        <label for="imagem">Capa do Livro</label>
+        <input type="file" id="imagem" name="imagem" accept=".jpg" required>
+
         <label for="titulo">Título</label>
         <input type="text" id="titulo"  name="titulo" placeholder="Digite o nome do livro" required>
 

@@ -8,6 +8,11 @@
 <body>
 <main>
     <h2>Lista de Livros</h2>
+
+    {% if 'id_usuario' in session %}
+    <a href="{{ url_for('logout') }}" class="botao-sair">Sair</a>
+    {% endif %}
+
     <a href="{{ url_for('novo') }}" class="botao-novo">Novo</a>
 
 

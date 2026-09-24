@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tonhão</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- TOPO -->
+    <header class="topo-site">
+
+        <div class="logo-tonhao">
+            <div class="logo-icone">T</div>
+
+            <div>
+                <h1>Tonhão</h1>
+                <span>Sistema de Biblioteca</span>
+            </div>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="botao-sair">
+            Sair
+        </a>
+
+    </header>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="inicio-tonhao">
+
+        <!-- BANNER -->
+        <section class="hero-tonhao">
+
+            <div class="hero-texto">
+
+                <span class="tag-tonhao">
+                    BEM-VINDO AO TONHÃO
+                </span>
+
+                <h2>
+                    Tudo o que você precisa,
+                    <strong>em um só lugar.</strong>
+                </h2>
+
+                <p>
+                    Gerencie livros e usuários de forma simples,
+                    rápida e organizada.
+                </p>
+
+                <div class="hero-botoes">
+
+                    <a href="{{ url_for('livro') }}"
+                       class="botao-principal">
+                        📚 Ver livros
+                    </a>
+
+                    <a href="{{ url_for('usuario') }}"
+                       class="botao-secundario">
+                        👤 Ver usuários
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-ilustracao">
+
+                <div class="livro-grande">
+                    📖
+                </div>
+
+                <div class="circulo-decorativo"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TÍTULO -->
+        <section class="secao-menu">
+
+            <div class="titulo-secao">
+
+                <span>MENU PRINCIPAL</span>
+
+                <h2>
+                    O que você deseja fazer?
+                </h2>
+
+                <p>
+                    Escolha uma das opções abaixo para continuar.
+                </p>
+
+            </div>
+
+
+            <!-- CARDS -->
+            <div class="cards-tonhao">
+
+
+                <!-- LIVROS -->
+                <article class="card-tonhao">
+
+                    <div class="icone-card azul">
+                        📚
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <span class="numero-card">
+                            01
+                        </span>
+
+                        <h3>
+                            Livros
+                        </h3>
+
+                        <p>
+                            Consulte, cadastre, edite e
+                            gerencie os livros do sistema.
+                        </p>
+
+                        <a href="{{ url_for('livro') }}"
+                           class="link-card">
+                            Acessar livros →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- USUÁRIOS -->
+                <article class="card-tonhao">
+
+                    <div class="icone-card roxo">
+                        👤
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <span class="numero-card">
+                            02
+                        </span>
+
+                        <h3>
+                            Usuários
+                        </h3>
+
+                        <p>
+                            Visualize e gerencie os usuários
+                            cadastrados no sistema.
+                        </p>
+
+                        <a href="{{ url_for('usuario') }}"
+                           class="link-card">
+                            Acessar usuários →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NOVO USUÁRIO -->
+                <article class="card-tonhao">
+
+                    <div class="icone-card verde">
+                        ➕
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <span class="numero-card">
+                            03
+                        </span>
+
+                        <h3>
+                            Novo usuário
+                        </h3>
+
+                        <p>
+                            Cadastre um novo usuário
+                            no sistema Tonhão.
+                        </p>
+
+                        <a href="{{ url_for('novo_usuario') }}"
+                           class="link-card">
+                            Cadastrar usuário →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SAIR -->
+                <article class="card-tonhao">
+
+                    <div class="icone-card vermelho">
+                        🚪
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <span class="numero-card">
+                            04
+                        </span>
+
+                        <h3>
+                            Sair
+                        </h3>
+
+                        <p>
+                            Encerre sua sessão com
+                            segurança.
+                        </p>
+
+                        <a href="{{ url_for('logout') }}"
+                           class="link-card vermelho-texto">
+                            Encerrar sessão →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer class="footer-tonhao">
+
+            <div>
+                <strong>Tonhão</strong>
+                <span> • Sistema de Biblioteca</span>
+            </div>
+
+            <p>
+                Sistema desenvolvido para facilitar
+                o gerenciamento da biblioteca.
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

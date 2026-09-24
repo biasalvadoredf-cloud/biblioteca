@@ -1,6 +1,6 @@
-/* ========================================
-   CONFIGURAÇÕES GERAIS
-======================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -8,527 +8,1693 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f3f6fb;
-    color: #263238;
+    font-family: "Segoe UI", Arial, sans-serif;
     min-height: 100vh;
-    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(37, 99, 235, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(99, 102, 241, 0.08),
+            transparent 30%
+        ),
+        #eef2f7;
+
+    color: #172033;
+
+    padding: 50px 25px;
 }
 
 
-/* ========================================
+/* =========================================================
    CONTAINER PRINCIPAL
-======================================== */
+========================================================= */
 
 main {
-    width: 95%;
-    max-width: 1100px;
+    width: min(1150px, 100%);
+
     margin: 0 auto;
+
+    padding: 45px;
+
     background: #ffffff;
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #e4e8ef;
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.10);
+
+    animation: aparecer 0.5s ease;
 }
 
 
-/* ========================================
+/* =========================================================
    TÍTULOS
-======================================== */
+========================================================= */
 
 h1,
-h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #173b70;
+h2,
+h3,
+h4 {
+    color: #172033;
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: 800;
 }
 
 h2 {
     font-size: 28px;
+    font-weight: 750;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+p {
+    color: #64748b;
+    line-height: 1.7;
 }
 
 
-/* ========================================
-   BOTÃO NOVO / CADASTRAR
-======================================== */
+/* =========================================================
+   LINKS
+========================================================= */
 
-.botao-cadastrar,
-.botao-novo,
-main > a {
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-    margin-bottom: 25px;
-
-    background: #1976d2;
-    color: white;
-
+a {
     text-decoration: none;
+    color: #2563eb;
 
-    padding: 12px 20px;
+    transition: all 0.25s ease;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+
+/* =========================================================
+   TOPO
+========================================================= */
+
+.topo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    max-width: 950px;
+
+    margin: 0 auto 35px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #e8edf3;
+}
+
+.topo h1,
+.topo h2 {
+
+    margin: 0;
+}
+
+.topo p {
+
+    margin-top: 7px;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+nav {
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    margin: 0 auto 40px;
+
+    padding: 6px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    background: #f7f9fc;
+
+    border: 1px solid #e5eaf0;
+
+    border-radius: 14px;
+}
+
+nav a {
+
+    padding: 11px 19px;
 
     border-radius: 9px;
 
-    font-weight: bold;
+    color: #475569;
 
-    transition: 0.2s;
+    font-size: 14px;
+
+    font-weight: 650;
 }
 
-.botao-cadastrar:hover,
-.botao-novo:hover,
-main > a:hover {
-    background: #125ca8;
+nav a:hover {
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+button,
+.botao,
+main > a:not(.botao-sair),
+.botao-cadastrar,
+.botao-voltar {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 45px;
+
+    padding: 11px 21px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+
+    transition: all 0.25s ease;
+}
+
+button:hover,
+.botao:hover,
+main > a:not(.botao-sair):hover,
+.botao-cadastrar:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.28);
+}
+
+
+/* =========================================================
+   BOTÃO SAIR
+========================================================= */
+
+.botao-sair {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    background: #fff5f5;
+
+    border: 1px solid #fecaca;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: all 0.25s ease;
+}
+
+.botao-sair:hover {
+
+    background: #dc2626;
+
+    border-color: #dc2626;
+
+    color: #ffffff;
+
     transform: translateY(-2px);
 }
 
 
-/* ========================================
-   TABELA
-======================================== */
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
+.botao-voltar {
+
+    background: #f8fafc;
+
+    border: 1px solid #dce3eb;
+
+    color: #475569;
+
+    box-shadow: none;
+}
+
+.botao-voltar:hover {
+
+    background: #eef4ff;
+
+    border-color: #bfdbfe;
+
+    color: #2563eb;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   BOAS-VINDAS
+========================================================= */
+
+.boas-vindas {
+
+    max-width: 900px;
+
+    margin: 0 auto 40px;
+
+    padding: 45px 35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0f6ff,
+            #f8fbff
+        );
+
+    border: 1px solid #dbe7ff;
+
+    border-radius: 24px;
+}
+
+.boas-vindas h1,
+.boas-vindas h2 {
+
+    margin-bottom: 12px;
+
+    color: #173b7a;
+}
+
+.boas-vindas p {
+
+    max-width: 650px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+
+    width: min(900px, 100%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+.card {
+
+    padding: 32px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e3e8ef;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.05);
+
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+
+    transform: translateY(-6px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.10);
+}
+
+
+/* =========================================================
+   ÍCONE DOS CARDS
+========================================================= */
+
+.card .icone {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 17px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 0;
+}
+
+.card .icone::after {
+
+    content: "";
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: 6px;
+
+    background: #2563eb;
+}
+
+.card h3 {
+
+    margin-bottom: 10px;
+}
+
+.card p {
+
+    max-width: 300px;
+
+    margin: 0 auto 22px;
+}
+
+
+/* =========================================================
+   AÇÕES DOS CARDS
+========================================================= */
+
+.card-acoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   TABELAS
+========================================================= */
+
+.table-container {
+
+    width: min(1050px, 100%);
+
+    margin: 30px auto;
+
+    overflow-x: auto;
+
+    border: 1px solid #e1e7ee;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.05);
+}
 
 table {
+
     width: 100%;
+
     border-collapse: collapse;
-    overflow: hidden;
-    border-radius: 12px;
+
+    background: #ffffff;
 }
 
 thead {
-    background: #173b70;
-    color: white;
+
+    background: #172554;
 }
 
 th {
-    padding: 16px;
-    text-align: left;
-    font-size: 15px;
+
+    padding: 17px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
 }
 
 td {
-    padding: 15px;
-    border-bottom: 1px solid #e8edf3;
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: #475569;
+
+    border-bottom: 1px solid #edf1f5;
 }
 
 tbody tr {
-    transition: 0.2s;
+
+    transition: background 0.2s ease;
 }
 
 tbody tr:hover {
-    background: #f4f8ff;
+
+    background: #f8fbff;
 }
 
 tbody tr:last-child td {
+
     border-bottom: none;
 }
 
 
-/* ========================================
-   ÁREA DOS BOTÕES EDITAR / EXCLUIR
-======================================== */
+/* =========================================================
+   AÇÕES DA TABELA
+========================================================= */
 
 .acoes {
+
     display: flex;
+
     align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
     gap: 8px;
 }
 
 
-/* ========================================
-   BOTÃO EDITAR
-======================================== */
+/* =========================================================
+   EDITAR
+========================================================= */
 
 .botao-editar {
+
     display: inline-flex;
 
-    width: 80px;
-    height: 38px;
-
     align-items: center;
+
     justify-content: center;
 
-    background: #f9a825;
-    color: white;
+    padding: 8px 14px;
 
-    text-decoration: none;
+    border-radius: 9px;
 
-    padding: 0;
+    background: #fffbeb;
 
-    border-radius: 7px;
+    border: 1px solid #fde68a;
 
-    font-size: 15px;
-    font-weight: bold;
+    color: #a16207;
 
-    border: none;
+    font-size: 13px;
 
-    cursor: pointer;
+    font-weight: 700;
 
-    transition: 0.2s;
+    transition: 0.25s ease;
 }
 
 .botao-editar:hover {
-    background: #d98c00;
-    transform: translateY(-2px);
+
+    background: #f59e0b;
+
+    border-color: #f59e0b;
+
+    color: #ffffff;
 }
 
 
-/* ========================================
-   FORMULÁRIO DENTRO DOS BOTÕES
-======================================== */
+/* =========================================================
+   EXCLUIR
+========================================================= */
 
-.acoes form {
+.botao-delete {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    background: #fff5f5;
+
+    border: 1px solid #fecaca;
+
+    color: #dc2626;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.botao-delete:hover {
+
+    background: #dc2626;
+
+    border-color: #dc2626;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.formulario {
+
+    width: min(620px, 100%);
+
+    margin: 35px auto;
+
+    padding: 40px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e7ee;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 45px rgba(15, 23, 42, 0.07);
+}
+
+.form-grupo {
+
+    margin-bottom: 22px;
+}
+
+label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d7dee8;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    background: #ffffff;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+input::placeholder,
+textarea::placeholder {
+
+    color: #94a3b8;
+}
+
+textarea {
+
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   AÇÕES FORMULÁRIO
+========================================================= */
+
+.form-acoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.12),
+            transparent 35%
+        ),
+        #eef2f7;
+}
+
+.login-container {
+
+    width: min(430px, 100%);
+
+    padding: 45px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e7ef;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.12);
+}
+
+.login-logo {
+
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 22px;
+
+    border-radius: 17px;
+
+    background: #172554;
+
+    color: #ffffff;
+
+    font-size: 0;
+
+    box-shadow:
+        0 12px 25px rgba(23, 37, 84, 0.20);
+}
+
+.login-logo::after {
+
+    content: "";
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: 6px;
+
+    background: #60a5fa;
+}
+
+.login-container h1,
+.login-container h2 {
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.login-container p {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.login-container button {
+
+    width: 100%;
+}
+
+.login-link {
+
+    display: block;
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   CONFIRMAÇÃO
+========================================================= */
+
+.confirmacao {
+
+    width: min(550px, 100%);
+
+    margin: 60px auto;
+
+    padding: 42px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e3e8ef;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.confirmacao p {
+
+    max-width: 430px;
+
+    margin: 15px auto 25px;
+}
+
+.confirmacao-acoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   TONHÃO - CABEÇALHO
+========================================================= */
+
+.topo-site {
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto 25px;
+
+    padding: 20px 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: rgba(255,255,255,0.92);
+
+    border: 1px solid #e3e8ef;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-tonhao {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.logo-tonhao h1 {
+
     margin: 0;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #172554;
+}
+
+.logo-tonhao span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.logo-icone {
+
+    width: 46px;
+
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #172554;
+
+    color: #ffffff;
+
+    font-size: 0;
+
+    box-shadow:
+        0 8px 20px rgba(23, 37, 84, 0.20);
+}
+
+.logo-icone::after {
+
+    content: "";
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 5px;
+
+    background: #60a5fa;
+}
+
+
+/* =========================================================
+   PÁGINA TONHÃO
+========================================================= */
+
+.inicio-tonhao {
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto;
+
     padding: 0;
 
     background: transparent;
 
-    box-shadow: none;
+    border: none;
 
-    width: auto;
+    box-shadow: none;
 }
 
 
-/* ========================================
-   BOTÃO EXCLUIR
-======================================== */
+/* =========================================================
+   HERO TONHÃO
+========================================================= */
 
-.botao-delete {
-    display: inline-flex;
+.hero-tonhao {
 
-    width: 80px;
-    height: 38px;
+    position: relative;
+
+    width: 100%;
+
+    min-height: 430px;
+
+    display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    margin: 0 !important;
+    text-align: center;
 
-    background: #e53935;
-    color: white;
+    padding: 70px 45px;
 
-    padding: 0 !important;
+    overflow: hidden;
 
-    border: none;
-    border-radius: 7px;
+    border-radius: 28px;
 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    background:
+        linear-gradient(
+            135deg,
+            #0f1f46 0%,
+            #172554 55%,
+            #1d4ed8 100%
+        );
 
-    cursor: pointer;
-
-    transition: 0.2s;
+    box-shadow:
+        0 30px 70px rgba(15, 31, 70, 0.25);
 }
 
-.botao-delete:hover {
-    background: #c62828;
-    transform: translateY(-2px);
+.hero-tonhao::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    top: -300px;
+
+    right: -150px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-tonhao::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 400px;
+
+    bottom: -300px;
+
+    left: -150px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.07);
 }
 
 
-/* ========================================
-   FORMULÁRIOS
-======================================== */
+/* =========================================================
+   TEXTO HERO
+========================================================= */
 
-form:not(.acoes form) {
-    max-width: 550px;
+.hero-texto {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(720px, 100%);
+
     margin: 0 auto;
-
-    background: white;
-
-    padding: 30px;
-
-    border-radius: 18px;
-
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
+.tag-tonhao {
 
-/* ========================================
-   LABELS
-======================================== */
-
-form label {
-    display: block;
-
-    margin-top: 16px;
-    margin-bottom: 7px;
-
-    font-weight: bold;
-
-    color: #37474f;
-}
-
-
-/* ========================================
-   INPUTS
-======================================== */
-
-form input,
-form select {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 2px solid #dce3ec;
-
-    border-radius: 9px;
-
-    outline: none;
-
-    font-size: 15px;
-
-    transition: 0.2s;
-}
-
-form input:focus,
-form select:focus {
-    border-color: #1976d2;
-
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
-}
-
-
-/* ========================================
-   BOTÃO ADICIONAR / SALVAR
-======================================== */
-
-.botao-salvar {
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 13px;
-
-    background: #43a047;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 9px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.botao-salvar:hover {
-    background: #2e7d32;
-    transform: translateY(-2px);
-}
-
-
-/* ========================================
-   BOTÃO CONCLUÍDO
-======================================== */
-
-.botao-concluido {
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 13px;
-
-    background: #43a047;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 9px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.botao-concluido:hover {
-    background: #2e7d32;
-    transform: translateY(-2px);
-}
-
-
-/* ========================================
-   CASO O BOTÃO DO FORM NÃO TENHA CLASSE
-======================================== */
-
-form:not(.acoes form) button[type="submit"] {
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 13px;
-
-    background: #43a047;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 9px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-form:not(.acoes form) button[type="submit"]:hover {
-    background: #2e7d32;
-}
-
-
-/* ========================================
-   MENSAGENS
-======================================== */
-
-.flash-messages {
-    margin-bottom: 20px;
-}
-
-.flash {
-    padding: 14px 18px;
-
-    border-radius: 9px;
-
-    margin-bottom: 10px;
-
-    font-weight: bold;
-}
-
-
-/* ========================================
-   MENSAGEM DE SUCESSO
-======================================== */
-
-.flash.success {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-left: 5px solid #43a047;
-}
-
-
-/* ========================================
-   MENSAGEM DE ERRO
-======================================== */
-
-.flash.error {
-    background: #ffebee;
-    color: #c62828;
-    border-left: 5px solid #e53935;
-}
-
-
-/* ========================================
-   MENSAGEM NORMAL
-======================================== */
-
-.flash.message {
-    background: #e3f2fd;
-    color: #1565c0;
-    border-left: 5px solid #1976d2;
-}
-
-
-/* ========================================
-   CONFIRMAÇÃO DE EXCLUSÃO
-======================================== */
-
-.confirmacao {
-    max-width: 550px;
-
-    margin: 30px auto;
-
-    background: white;
-
-    padding: 30px;
-
-    border-radius: 18px;
-
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-.confirmacao p {
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-
-/* ========================================
-   BOTÃO VOLTAR
-======================================== */
-
-.botao-voltar {
     display: inline-block;
 
-    background: #78909c;
+    margin-bottom: 20px;
 
-    color: white;
+    padding: 7px 14px;
 
-    text-decoration: none;
+    border-radius: 999px;
 
-    padding: 11px 18px;
+    color: #bfdbfe;
 
-    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
 
-    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.14);
 
-    transition: 0.2s;
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
 }
 
-.botao-voltar:hover {
-    background: #546e7a;
-    transform: translateY(-2px);
+.hero-tonhao h2 {
+
+    margin-bottom: 20px;
+
+    color: #ffffff;
+
+    font-size: clamp(38px, 5vw, 58px);
+
+    font-weight: 800;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+}
+
+.hero-tonhao h2 strong {
+
+    color: #60a5fa;
+}
+
+.hero-tonhao p {
+
+    max-width: 600px;
+
+    margin: 0 auto 30px;
+
+    color: #dbeafe;
+
+    font-size: 16px;
 }
 
 
-/* ========================================
+/* =========================================================
+   BOTÕES HERO
+========================================================= */
+
+.hero-botoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.botao-principal,
+.botao-secundario {
+
+    min-width: 150px;
+
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: all 0.25s ease;
+}
+
+.botao-principal {
+
+    background: #ffffff;
+
+    color: #173b7a;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.12);
+}
+
+.botao-principal:hover {
+
+    color: #173b7a;
+
+    transform: translateY(-3px);
+}
+
+.botao-secundario {
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    color: #ffffff;
+}
+
+.botao-secundario:hover {
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,0.15);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   MENU TONHÃO
+========================================================= */
+
+.secao-menu {
+
+    width: 900px;
+
+    max-width: 100%;
+
+    margin: 65px auto 0;
+
+    text-align: center;
+}
+
+.titulo-secao {
+
+    margin-bottom: 30px;
+}
+
+.titulo-secao > span {
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.titulo-secao h2 {
+
+    margin: 10px 0;
+
+    font-size: 30px;
+}
+
+.titulo-secao p {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CARDS TONHÃO
+========================================================= */
+
+.cards-tonhao {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+.card-tonhao {
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.05);
+
+    transition: all 0.3s ease;
+}
+
+.card-tonhao:hover {
+
+    transform: translateY(-6px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.10);
+}
+
+
+/* =========================================================
+   ÍCONES TONHÃO
+========================================================= */
+
+.icone-card {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 16px;
+
+    font-size: 0;
+}
+
+.icone-card::after {
+
+    content: "";
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 5px;
+
+    background: #2563eb;
+}
+
+.icone-card.azul {
+
+    background: #eff6ff;
+}
+
+.icone-card.roxo {
+
+    background: #f5f3ff;
+}
+
+.icone-card.roxo::after {
+
+    background: #7c3aed;
+}
+
+.icone-card.verde {
+
+    background: #ecfdf5;
+}
+
+.icone-card.verde::after {
+
+    background: #059669;
+}
+
+.icone-card.vermelho {
+
+    background: #fff1f2;
+}
+
+.icone-card.vermelho::after {
+
+    background: #dc2626;
+}
+
+
+/* =========================================================
+   CONTEÚDO CARD
+========================================================= */
+
+.card-conteudo {
+
+    width: 100%;
+}
+
+.numero-card {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.card-conteudo h3 {
+
+    margin-bottom: 8px;
+
+    font-size: 20px;
+}
+
+.card-conteudo p {
+
+    max-width: 320px;
+
+    margin: 0 auto 16px;
+
+    font-size: 14px;
+}
+
+.link-card {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    color: #2563eb;
+}
+
+.vermelho-texto {
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-tonhao {
+
+    width: 900px;
+
+    max-width: 100%;
+
+    margin: 55px auto 0;
+
+    padding: 25px 5px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    border-top: 1px solid #e2e8f0;
+
+    color: #64748b;
+}
+
+.footer-tonhao p {
+
+    margin: 0;
+
+    font-size: 13px;
+}
+
+.footer-tonhao strong {
+
+    color: #172554;
+}
+
+
+/* =========================================================
    RESPONSIVIDADE
-======================================== */
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     body {
-        padding: 20px 10px;
+
+        padding: 25px 15px;
     }
 
     main {
+
+        padding: 30px 22px;
+
+        border-radius: 22px;
+    }
+
+    .cards,
+    .cards-tonhao {
+
+        grid-template-columns: 1fr;
+    }
+
+    .hero-tonhao {
+
+        min-height: 400px;
+
+        padding: 55px 25px;
+    }
+
+    .hero-tonhao h2 {
+
+        font-size: 42px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    body {
+
+        padding: 12px;
+    }
+
+    main {
+
         width: 100%;
-        padding: 20px;
+
+        padding: 22px 16px;
+
+        border-radius: 18px;
     }
 
-    table {
-        font-size: 13px;
-    }
+    .topo {
 
-    th,
-    td {
-        padding: 10px 7px;
-    }
-
-    .acoes {
         flex-direction: column;
+
+        text-align: center;
+
+        align-items: center;
+    }
+
+    .topo .botao-sair {
+
+        width: 100%;
+    }
+
+    nav {
+
+        width: 100%;
+
+        flex-direction: column;
+
         align-items: stretch;
     }
 
-    .botao-editar,
-    .botao-delete {
-        width: 100% !important;
+    nav a {
+
+        text-align: center;
     }
 
-    .botao-cadastrar,
-    .botao-novo {
-        margin-left: auto;
+    .boas-vindas {
+
+        padding: 32px 20px;
+    }
+
+    .formulario {
+
+        padding: 28px 20px;
+    }
+
+    .login-container {
+
+        padding: 32px 22px;
+    }
+
+    .topo-site {
+
+        width: 100%;
+
+        padding: 17px;
+    }
+
+    .inicio-tonhao {
+
+        width: 100%;
+    }
+
+    .hero-tonhao {
+
+        min-height: 430px;
+
+        padding: 45px 20px;
+
+        border-radius: 22px;
+    }
+
+    .hero-tonhao h2 {
+
+        font-size: 35px;
+
+        letter-spacing: -1px;
+    }
+
+    .hero-botoes {
+
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .botao-principal,
+    .botao-secundario {
+
+        width: 100%;
+    }
+
+    .card-tonhao {
+
+        padding: 28px 20px;
+    }
+
+    .footer-tonhao {
+
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
     }
 }

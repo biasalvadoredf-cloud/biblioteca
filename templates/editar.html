@@ -8,6 +8,8 @@
 <body>
     <h2>Editar Livro</h2>
 
+    <a href="{{ url_for('index') }}" class="botao-voltar">Voltar</a>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">

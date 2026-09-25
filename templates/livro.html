@@ -9,9 +9,7 @@
 <main>
     <h2>Lista de Livros</h2>
 
-    {% if 'id_usuario' in session %}
-    <a href="{{ url_for('logout') }}" class="botao-sair">Sair</a>
-    {% endif %}
+    <a href="{{ url_for('index') }}" class="botao-voltar">Voltar</a>
 
     <a href="{{ url_for('novo') }}" class="botao-novo">Novo</a>
 
@@ -46,17 +44,11 @@
             <td>
             <div class="acoes">
 
-                <a href="{{ url_for('editar', id=livro[0]) }}"
-                   class="botao-editar">
-                    Editar
-                </a>
+                <a href="{{ url_for('editar', id=livro[0]) }}" class="botao-editar">Editar</a>
 
-                <form action="{{ url_for('delete', id=livro[0]) }}"
-                      method="post">
+                <form action="{{ url_for('delete', id=livro[0]) }}" method="post">
 
-                    <button type="submit" class="botao-delete">
-                        Excluir
-                    </button>
+                    <button type="submit" class="botao-delete">Excluir</button>
 
                 </form>
 

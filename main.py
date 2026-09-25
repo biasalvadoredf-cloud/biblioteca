@@ -5,12 +5,10 @@ from flask_bcrypt import Bcrypt
 
 # =========================================================
 # CONFIGURAÇÃO DO FLASK
-# =========================================================
-
+# =======================================================
 app = Flask(__name__)
 
 bcrypt = Bcrypt(app)
-
 app.config['SECRET_KEY'] = 'chave_secreta_da_turma_b'
 
 
@@ -19,20 +17,15 @@ app.config['SECRET_KEY'] = 'chave_secreta_da_turma_b'
 # =========================================================
 
 host = 'localhost'
-
-database = r'C:\Users\Aluno\Downloads\BANCO_bia\BANCOBIA.FDB'
-
+database = r'C:\Users\biasa\Documents\BANCO_bia\BANCOBIA.FDB'
 user = 'sysdba'
-
-password = 'sysdba'
-
+password = 'masterkey'
 con = fdb.connect(
     host=host,
     database=database,
     user=user,
     password=password
 )
-
 
 # =========================================================
 # FUNÇÃO PARA VERIFICAR SENHA FORTE
@@ -62,25 +55,30 @@ def senha_forte(senha):
         else:
             tem_especial = True
 
-    if (
-        tem_maiuscula
-        and tem_minuscula
-        and tem_numero
-        and tem_especial
-    ):
+    if (tem_maiuscula and tem_minuscula and tem_numero and tem_especial):
+
         return True
 
     return False
 
-
 # =========================================================
-# PÁGINA INICIAL
+# HOME - ANTES DO LOGIN
 # =========================================================
 
 @app.route('/')
+def home():
+    return render_template('home.html')
+
+
+# =========================================================
+# PAINEL - DEPOIS DO LOGIN
+# =========================================================
+
+@app.route('/index')
 def index():
 
     if 'id_usuario' not in session:
+        flash('Precisa estar logado')
         return redirect(url_for('login'))
 
     return render_template('index.html')
@@ -819,7 +817,7 @@ def logout():
     )
 
     return redirect(
-        url_for('login')
+        url_for('home')
     )
 
 
@@ -829,6 +827,4 @@ def logout():
 
 if __name__ == '__main__':
 
-    app.run(
-        debug=True
-    )
+    app.run(debug=True)

@@ -972,31 +972,66 @@ main {
 }
 
 
-/* Cabeçalho do formulário */
+/*
+   CAIXA BRANCA DO LOGIN E FORMULÁRIOS
+*/
 
 .cabecalho-formulario {
     width: 100%;
 
     margin-bottom: 22px;
+    padding: 35px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e2dfdc;
+    border-top: 5px solid #6f1d2c;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(73, 17, 28, 0.07);
 }
+
+
+/* Botão voltar dentro da caixa */
 
 .cabecalho-formulario .botao-voltar {
     margin-bottom: 25px;
 }
 
+
+/* Título */
+
 .cabecalho-formulario h2 {
-    margin: 0 0 8px;
+    margin: 0 0 25px;
 
     color: #49111c;
 
     font-size: 28px;
+    text-align: center;
 }
+
+
+/* Texto */
 
 .cabecalho-formulario p {
     color: #777777;
 
     font-size: 14px;
     line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* Link do cadastro */
+
+.cabecalho-formulario p a {
+    color: #6f1d2c;
+    font-weight: bold;
+}
+
+.cabecalho-formulario p a:hover {
+    color: #49111c;
 }
 
 
@@ -1167,7 +1202,8 @@ main > h2 {
 
 main > .botao-voltar,
 main > .botao-novo,
-main > .botao-sair {
+main > .botao-sair,
+main > .botao-relatorio {
     margin-right: 7px;
     margin-bottom: 15px;
 }
@@ -1271,10 +1307,10 @@ tbody tr:last-child td {
    ========================================================= */
 
 .flash-messages {
-    width: 90%;
-    max-width: 650px;
+    width: 100%;
+    max-width: none;
 
-    margin: 20px auto;
+    margin: 20px 0;
 }
 
 .flash {
@@ -1390,7 +1426,119 @@ tbody tr:last-child td {
 
 
 /* =========================================================
-   19. RESPONSIVIDADE
+   19. BOTÃO RELATÓRIO
+   ========================================================= */
+
+.botao-relatorio {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffffff;
+    color: #6f1d2c;
+
+    border: 1px solid #b9979d;
+    border-radius: 7px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.botao-relatorio:hover {
+    background-color: #6f1d2c;
+    color: #ffffff;
+
+    border-color: #6f1d2c;
+
+    box-shadow: 0 5px 12px rgba(111, 29, 44, 0.18);
+
+    transform: translateY(-2px);
+}
+
+.botao-relatorio:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   20. BOTÕES DO LOGIN
+   ========================================================= */
+
+.login-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.login-botoes .botao-login,
+.login-botoes .botao-voltar {
+    flex: 1;
+    min-height: 43px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   21. AJUSTES DO LOGIN DENTRO DE FORMULÁRIO
+   ========================================================= */
+
+/*
+   Como seu HTML atual usa:
+
+   <main class="pagina-formulario">
+       <div class="cabecalho-formulario">
+           ...
+       </div>
+   </main>
+
+   estas regras deixam toda a área do login branca.
+*/
+
+.pagina-formulario .cabecalho-formulario {
+    background-color: #ffffff;
+}
+
+.pagina-formulario .cabecalho-formulario form {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    box-shadow: none;
+}
+
+
+/* Botão Voltar próximo do formulário */
+
+.pagina-formulario .cabecalho-formulario .botao-voltar {
+    width: auto;
+
+    margin-bottom: 25px;
+
+    background-color: #ffffff;
+    color: #555555;
+}
+
+.pagina-formulario .cabecalho-formulario .botao-voltar:hover {
+    background-color: #f4f3f1;
+    color: #333333;
+}
+
+
+/* =========================================================
+   22. RESPONSIVIDADE
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -1553,8 +1701,23 @@ tbody tr:last-child td {
         padding: 25px;
     }
 
+    /*
+       Mantém a caixa branca do login
+       mesmo em telas pequenas.
+    */
+
+    .cabecalho-formulario {
+        width: 100%;
+
+        padding: 25px;
+    }
+
     .cabecalho-formulario h2 {
         font-size: 25px;
+    }
+
+    .cabecalho-formulario .botao-voltar {
+        margin-bottom: 20px;
     }
 
 

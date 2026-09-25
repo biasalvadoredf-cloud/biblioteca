@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 import fdb
 from flask_bcrypt import Bcrypt
-
+from fpdf import FPDF
+from flask import send_file
 
 # =========================================================
 # CONFIGURAÇÃO DO FLASK
@@ -17,9 +18,9 @@ app.config['SECRET_KEY'] = 'chave_secreta_da_turma_b'
 # =========================================================
 
 host = 'localhost'
-database = r'C:\Users\biasa\Documents\BANCO_bia\BANCOBIA.FDB'
+database = r'C:\Users\Aluno\Downloads\BANCO_bia\BANCOBIA.FDB'
 user = 'sysdba'
-password = 'masterkey'
+password = 'sysdba'
 con = fdb.connect(
     host=host,
     database=database,
@@ -60,6 +61,8 @@ def senha_forte(senha):
         return True
 
     return False
+
+
 
 # =========================================================
 # HOME - ANTES DO LOGIN
@@ -714,7 +717,6 @@ def login():
     if request.method == 'POST':
 
         email = request.form['email']
-
         senha = request.form['senha']
 
         cursor = con.cursor()
@@ -727,10 +729,10 @@ def login():
                     id_usuario,
                     nome,
                     email,
-                    senha
-
+                    senha,
+                    tentativas,
+                    ativo
                 FROM USUARIO
-
                 WHERE email = ?
                 """,
                 (email,)
@@ -738,67 +740,73 @@ def login():
 
             usuario = cursor.fetchone()
 
-
             if not usuario:
+                flash('Usuário não encontrado')
+                return redirect(url_for('login'))
 
-                flash(
-                    'Usuário não encontrado'
-                )
+            id_usuario, nome, email, senha_hash, tentativas, ativo = usuario
 
-                return redirect(
-                    url_for('login')
-                )
+            # Verifica se o usuário está ativo
+            if ativo == 0:
+                flash('Usuário inativo ou bloqueado.')
+                return redirect(url_for('login'))
 
-
-            id_usuario, nome, email, senha_hash = usuario
-
-
-            if bcrypt.check_password_hash(
-                senha_hash,
-                senha
-            ):
+            # Verifica a senha
+            if bcrypt.check_password_hash(senha_hash, senha):
 
                 session['id_usuario'] = id_usuario
+                session['usuario_nome'] = nome
 
-                flash(
-                    "Login realizado com sucesso"
+                # Zera as tentativas
+                cursor.execute(
+                    'UPDATE usuario SET tentativas = ? WHERE id_usuario = ?',
+                    (0, id_usuario)
                 )
 
-                return redirect(
-                    url_for('index')
+                con.commit()
+
+                flash("Login realizado com sucesso")
+                return redirect(url_for('index'))
+
+            else:
+
+                # Senha incorreta
+                tentativas += 1
+
+                cursor.execute(
+                    'UPDATE usuario SET tentativas = ? WHERE id_usuario = ?',
+                    (tentativas, id_usuario)
                 )
 
+                con.commit()
 
-            flash(
-                "Email ou senha incorretos"
-            )
+                if tentativas == 3:
 
-            return redirect(
-                url_for('login')
-            )
+                    cursor.execute(
+                        'UPDATE usuario SET tentativas = ?, ativo = ? WHERE id_usuario = ?',
+                        (tentativas, 0, id_usuario)
+                    )
 
+                    con.commit()
+
+                    flash('Usuário bloqueado após 3 tentativas.')
+                    return redirect(url_for('login'))
+
+                flash(f"Email ou senha incorretos. Tentativa {tentativas} de 3.")
+                return redirect(url_for('login'))
 
         except Exception as e:
 
-            flash(
-                f"Ocorreu um erro -> {e}"
-            )
-
+            flash(f"Ocorreu um erro -> {e}")
             con.rollback()
 
-            return redirect(
-                url_for('login')
-            )
+            return redirect(url_for('login'))
 
         finally:
 
             cursor.close()
 
-
-    return render_template(
-        'login.html'
-    )
-
+    return render_template('login.html')
 
 # =========================================================
 # LOGOUT
@@ -807,18 +815,72 @@ def login():
 @app.route('/logout')
 def logout():
 
-    session.pop(
-        'id_usuario',
-        None
+    session.pop('id_usuario',None)
+    flash("Logout realizado com sucesso")
+    return redirect(url_for('home'))
+
+# =========================================================
+# GERAR PDF
+# =========================================================
+
+@app.route('/livros/relatorio', methods=['GET'])
+def relatorio():
+
+    cursor = con.cursor()
+
+    cursor.execute("""
+        SELECT id_livro, titulo, autor, data_publicacao
+        FROM livro
+    """)
+
+    livros = cursor.fetchall()
+    cursor.close()
+
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    pdf.set_font("Arial", style='B', size=16)
+    pdf.cell(200, 10, "Relatório de Livros", ln=True, align='C')
+
+    pdf.ln(5)  # Espaço entre o título e a linha
+    pdf.line(10, pdf.get_y(), 200, pdf.get_y())  # Linha abaixo do título
+    pdf.ln(5)  # Espaço após a linha
+
+    pdf.set_font("Arial", size=12)
+
+    for livro in livros:
+        pdf.cell(
+            200,
+            10,
+            f"ID: {livro[0]} - {livro[1]} - {livro[2]} - {livro[3]}",
+            ln=True
+        )
+
+    contador_livros = len(livros)
+
+    pdf.ln(10)  # Espaço antes do contador
+
+    pdf.set_font("Arial", style='B', size=12)
+
+    pdf.cell(
+        200,
+        10,
+        f"Total de livros cadastrados: {contador_livros}",
+        ln=True,
+        align='C'
     )
 
-    flash(
-        "Logout realizado com sucesso"
+    pdf_path = "relatorio_livros.pdf"
+
+    pdf.output(pdf_path)
+
+    return send_file(
+        pdf_path,
+        as_attachment=True,
+        mimetype='application/pdf'
     )
 
-    return redirect(
-        url_for('home')
-    )
 
 
 # =========================================================

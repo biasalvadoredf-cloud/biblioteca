@@ -13,6 +13,18 @@
 
 <body class="pagina-home">
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <header class="home-header">
 
         <div class="logo-tonhao">
@@ -45,7 +57,7 @@
 
                 <span class="home-tag">SUA BIBLIOTECA</span>
 
-                <h2>Histórias começam<strong>aqui.</strong></h2>
+                <h2>Histórias começam<strong> aqui.</strong></h2>
 
                 <p>
                     Uma forma simples e organizada de gerenciar

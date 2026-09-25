@@ -17,24 +17,31 @@
     {% endif %}
     {% endwith %}
 
-    <div class="login">
+    <main class="pagina-formulario">
 
-        <h1>Login</h1>
+        <div class="cabecalho-formulario">
 
-        <form action="{{ url_for('login') }}" method="post">
+            <a href="{{ url_for('home') }}" class="botao-voltar">Voltar</a>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu email"/>
+            <h2>Login</h2>
 
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            <form action="{{ url_for('login') }}" method="post">
 
-            <button type="submit">Entrar</button>
-        </form>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email"/>
 
-        <p>Não possui conta? <a href="{{ url_for('novo_usuario') }}">Cadastre-se</a></p>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
 
-    </div>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p>Não possui conta? <a href="{{ url_for('novo_usuario') }}">Cadastre-se</a></p>
+
+        </div>
+
+    </main>
+
 
 </body>
 </html>
